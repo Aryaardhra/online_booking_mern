@@ -6,11 +6,14 @@ import roomsRoute from "./routes/roomsRoute.js";
 import usersRoute from "./routes/usersRoute.js";
 import connectDB from "./config/db.js";
 import cookieParser from "cookie-parser";
+import cors from "cors"
 
-const port = process.env.PORT || 8802;
+const PORT = process.env.PORT || 8802;
 const app = express();
 dotenv.config();
 connectDB();
+
+app.use(cors());
 
 app.get("/", (req, res) => {
     res.send("health ok !!!")
@@ -37,6 +40,6 @@ app.use((error, req, res, next) => {
 })
 
 
-app.listen(port, () => {
-    console.log(`running on port ${port}`);
+app.listen(PORT, () => {
+    console.log(`running on port ${PORT}`);
 })
