@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "watch": "nodemon index.js --ignore './client"  
+    "watch": "node index.js"  
   },
   "keywords": [],
   "author": "",
