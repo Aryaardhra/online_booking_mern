@@ -20,10 +20,10 @@ const port = process.env.PORT || 8802;
 connectDB();
 
 const _filename = fileURLToPath(import.meta.url);
-const _dirname = path.dirname(_filename);
+const __dirname = path.dirname(_filename);
 
 app.use(cors());
-app.use(express.static(path.join(_dirname, './client/build')));
+app.use(express.static(path.join(__dirname, './client/build')));
 app.get('*', (req,res) => res.sendFile(path.resolve(__dirname, './client/build', "index.html")));
 
 app.get("/", (req, res) => {
