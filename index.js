@@ -8,7 +8,10 @@ import connectDB from "./config/db.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import path from "path";
+import { fileURLToPath } from "url";
+
 dotenv.config();
+
 const app = express();
 
 const port = process.env.PORT || 8802;
@@ -16,10 +19,12 @@ const port = process.env.PORT || 8802;
 
 connectDB();
 
-app.use(cors());
-app.use(express.static(path.join('./client/build')));
+const _filename = fileURLToPath(import.meta.url);
+const _dirname = path.dirname(_filename);
 
-app.get('*', (req,res) => res.sendFile(path.resolve(__dirname, './client/build/index.html')));
+app.use(cors());
+app.use(express.static(path.join(_dirname, './client/build')));
+app.get('*', (req,res) => res.sendFile(path.resolve(__dirname, './client/build', "index.html")));
 
 app.get("/", (req, res) => {
     res.send("health ok !!!")
